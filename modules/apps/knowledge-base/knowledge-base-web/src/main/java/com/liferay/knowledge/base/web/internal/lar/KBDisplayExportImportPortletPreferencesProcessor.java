@@ -20,9 +20,12 @@ import com.liferay.exportimport.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.exportimport.portlet.preferences.processor.Capability;
 import com.liferay.exportimport.portlet.preferences.processor.ExportImportPortletPreferencesProcessor;
 import com.liferay.exportimport.portlet.preferences.processor.capability.ReferencedStagedModelImporterCapability;
+import com.liferay.knowledge.base.constants.KBArticleConstants;
 import com.liferay.knowledge.base.constants.KBFolderConstants;
 import com.liferay.knowledge.base.constants.KBPortletKeys;
+import com.liferay.knowledge.base.model.KBArticle;
 import com.liferay.knowledge.base.model.KBFolder;
+import com.liferay.knowledge.base.service.KBArticleLocalService;
 import com.liferay.knowledge.base.service.KBFolderLocalService;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -32,6 +35,7 @@ import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 import java.util.List;
 import java.util.Map;
@@ -109,6 +113,43 @@ public class KBDisplayExportImportPortletPreferencesProcessor
 			}
 		}
 
+		if (resourceClassNameId ==
+				PortalUtil.getClassNameId(KBArticleConstants.getClassName())) {
+
+			try {
+				portletPreferences.setValue(
+					"resourceClassNameId",
+					PortalUtil.getClassName(resourceClassNameId));
+			}
+			catch (ReadOnlyException roe) {
+				StringBundler sb = new StringBundler(6);
+
+				sb.append("Unable to save converted portlet preference ");
+				sb.append("resourceClassNameId (from ");
+				sb.append(resourceClassNameId);
+				sb.append(" to ");
+				sb.append(PortalUtil.getClassName(resourceClassNameId));
+				sb.append(") while exporting portlet KB Display.");
+
+				throw new PortletDataException(sb.toString(), roe);
+			}
+
+			if (resourcePrimKey !=
+					KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
+
+				List<KBArticle> kbArticles =
+					_kbArticleLocalService.
+						getKBArticleAndAllDescendantKBArticles(
+							resourcePrimKey, WorkflowConstants.STATUS_APPROVED,
+							null);
+
+				for (KBArticle kbArticle : kbArticles) {
+					StagedModelDataHandlerUtil.exportReferenceStagedModel(
+						portletDataContext, portletId, kbArticle);
+				}
+			}
+		}
+
 		return portletPreferences;
 	}
 
@@ -169,8 +210,42 @@ public class KBDisplayExportImportPortletPreferencesProcessor
 				throw new PortletDataException(sb.toString(), roe);
 			}
 		}
+		
+		if (PortalUtil.getClassNameId(resourceClassName) ==
+				PortalUtil.getClassNameId(KBArticleConstants.getClassName())) {
+
+			Map<Long, Long> kbArticleIds =
+				(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
+					KBArticle.class);
+
+			resourcePrimKey = MapUtil.getLong(
+				kbArticleIds, resourcePrimKey, resourcePrimKey);
+
+			try {
+				portletPreferences.setValue(
+					"resourcePrimKey", String.valueOf(resourcePrimKey));
+			}
+			catch (ReadOnlyException roe) {
+				StringBundler sb = new StringBundler(5);
+
+				sb.append("Unable to save converted portlet preference ");
+				sb.append("resourcePrimKey=");
+				sb.append(resourcePrimKey);
+				sb.append(" (the root article)  ");
+				sb.append("while importing portlet KB Display.");
+
+				throw new PortletDataException(sb.toString(), roe);
+			}
+		}
 
 		return portletPreferences;
+	}
+
+	@Reference(unbind = "-")
+	protected void seKBArticleLocalService(
+		KBArticleLocalService kbArticleLocalService) {
+
+		_kbArticleLocalService = kbArticleLocalService;
 	}
 
 	@Reference(unbind = "-")
@@ -192,6 +267,7 @@ public class KBDisplayExportImportPortletPreferencesProcessor
 	private static final Log _log = LogFactoryUtil.getLog(
 		KBDisplayExportImportPortletPreferencesProcessor.class);
 
+	private KBArticleLocalService _kbArticleLocalService;
 	private KBFolderLocalService _kbFolderLocalService;
 	private ReferencedStagedModelImporterCapability
 		_referencedStagedModelImporterCapability;
