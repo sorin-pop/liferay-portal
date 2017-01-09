@@ -210,7 +210,7 @@ public class KBDisplayExportImportPortletPreferencesProcessor
 				throw new PortletDataException(sb.toString(), roe);
 			}
 		}
-		
+
 		if (PortalUtil.getClassNameId(resourceClassName) ==
 				PortalUtil.getClassNameId(KBArticleConstants.getClassName())) {
 

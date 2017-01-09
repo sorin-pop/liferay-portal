@@ -31,10 +31,10 @@ import org.osgi.service.component.annotations.Reference;
  * @author Tamas Molnar
  */
 @Component(
-	property = {"javax.portlet.name=" + KBPortletKeys.KNOWLEDGE_BASE_DISPLAY},
+	property = {"javax.portlet.name=" + KBPortletKeys.KNOWLEDGE_BASE_ARTICLE},
 	service = PortletDataHandler.class
 )
-public class KBDisplayPortletDataHandler extends AdminPortletDataHandler {
+public class KBArticlePortletDataHandler extends AdminPortletDataHandler {
 
 	public static final String SCHEMA_VERSION = "1.0.0";
 
@@ -46,7 +46,7 @@ public class KBDisplayPortletDataHandler extends AdminPortletDataHandler {
 	@Activate
 	protected void activate() {
 		setDataLevel(DataLevel.PORTLET_INSTANCE);
-		setDataPortletPreferences("resourceClassNameId", "resourcePrimKey");
+		setDataPortletPreferences("resourcePrimKey");
 	}
 
 	@Override
