@@ -71,8 +71,6 @@ public class KBArticleExportImportPortletPreferencesProcessor
 			PortletPreferences portletPreferences)
 		throws PortletDataException {
 
-		String portletId = portletDataContext.getPortletId();
-
 		long resourcePrimKey = GetterUtil.getLong(
 			portletPreferences.getValue("resourcePrimKey", StringPool.BLANK));
 
@@ -90,7 +88,8 @@ public class KBArticleExportImportPortletPreferencesProcessor
 
 			for (KBArticle kbArticle : kbArticles) {
 				StagedModelDataHandlerUtil.exportReferenceStagedModel(
-					portletDataContext, portletId, kbArticle);
+					portletDataContext, portletDataContext.getPortletId(),
+					kbArticle);
 			}
 		}
 
