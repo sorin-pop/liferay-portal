@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MapUtil;
-import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -74,9 +73,6 @@ public class KBArticleExportImportPortletPreferencesProcessor
 		long resourcePrimKey = GetterUtil.getLong(
 			portletPreferences.getValue("resourcePrimKey", StringPool.BLANK));
 
-		long resourceClassNameId = PortalUtil.getClassNameId(
-			KBArticleConstants.getClassName());
-
 		if (resourcePrimKey !=
 				KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
 
@@ -101,10 +97,6 @@ public class KBArticleExportImportPortletPreferencesProcessor
 			PortletDataContext portletDataContext,
 			PortletPreferences portletPreferences)
 		throws PortletDataException {
-
-		String resourceClassName = GetterUtil.getString(
-			portletPreferences.getValue(
-				"resourceClassNameId", StringPool.BLANK));
 
 		long resourcePrimKey = GetterUtil.getLong(
 			portletPreferences.getValue("resourcePrimKey", StringPool.BLANK));
