@@ -24,8 +24,6 @@ import com.liferay.knowledge.base.constants.KBArticleConstants;
 import com.liferay.knowledge.base.constants.KBPortletKeys;
 import com.liferay.knowledge.base.model.KBArticle;
 import com.liferay.knowledge.base.service.KBArticleLocalService;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MapUtil;
@@ -77,10 +75,8 @@ public class KBArticleExportImportPortletPreferencesProcessor
 				KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
 
 			List<KBArticle> kbArticles =
-				_kbArticleLocalService.
-					getKBArticleAndAllDescendantKBArticles(
-						resourcePrimKey, WorkflowConstants.STATUS_APPROVED,
-						null);
+				_kbArticleLocalService.getKBArticleAndAllDescendantKBArticles(
+					resourcePrimKey, WorkflowConstants.STATUS_APPROVED, null);
 
 			for (KBArticle kbArticle : kbArticles) {
 				StagedModelDataHandlerUtil.exportReferenceStagedModel(
@@ -142,9 +138,6 @@ public class KBArticleExportImportPortletPreferencesProcessor
 		_referencedStagedModelImporterCapability =
 			referencedStagedModelImporterCapability;
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		KBArticleExportImportPortletPreferencesProcessor.class);
 
 	private KBArticleLocalService _kbArticleLocalService;
 	private ReferencedStagedModelImporterCapability
