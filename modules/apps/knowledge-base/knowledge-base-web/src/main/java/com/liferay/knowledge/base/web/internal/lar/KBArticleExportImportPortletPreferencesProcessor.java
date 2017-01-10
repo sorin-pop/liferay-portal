@@ -97,12 +97,12 @@ public class KBArticleExportImportPortletPreferencesProcessor
 		long resourcePrimKey = GetterUtil.getLong(
 			portletPreferences.getValue("resourcePrimKey", StringPool.BLANK));
 
-		Map<Long, Long> kbArticleIds =
+		Map<Long, Long> kbArticleResourcePrimKeys =
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
 				KBArticle.class);
 
 		resourcePrimKey = MapUtil.getLong(
-			kbArticleIds, resourcePrimKey, resourcePrimKey);
+			kbArticleResourcePrimKeys, resourcePrimKey, resourcePrimKey);
 
 		try {
 			portletPreferences.setValue(
