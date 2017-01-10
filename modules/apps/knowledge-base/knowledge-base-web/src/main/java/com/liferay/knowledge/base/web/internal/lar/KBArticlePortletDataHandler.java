@@ -14,6 +14,7 @@
 
 package com.liferay.knowledge.base.web.internal.lar;
 
+import com.liferay.exportimport.kernel.lar.BasePortletDataHandler;
 import com.liferay.exportimport.kernel.lar.DataLevel;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
 import com.liferay.exportimport.kernel.lar.PortletDataHandler;
@@ -34,7 +35,7 @@ import org.osgi.service.component.annotations.Reference;
 	property = {"javax.portlet.name=" + KBPortletKeys.KNOWLEDGE_BASE_ARTICLE},
 	service = PortletDataHandler.class
 )
-public class KBArticlePortletDataHandler extends AdminPortletDataHandler {
+public class KBArticlePortletDataHandler extends BasePortletDataHandler {
 
 	public static final String SCHEMA_VERSION = "1.0.0";
 
