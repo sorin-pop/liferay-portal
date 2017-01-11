@@ -20,6 +20,7 @@ import com.liferay.exportimport.kernel.lar.PortletDataContext;
 import com.liferay.exportimport.kernel.lar.PortletDataHandler;
 import com.liferay.knowledge.base.constants.KBPortletKeys;
 import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;
+import com.liferay.portal.kernel.util.StringPool;
 
 import javax.portlet.PortletPreferences;
 
@@ -56,13 +57,7 @@ public class KBArticlePortletDataHandler extends BasePortletDataHandler {
 			PortletPreferences portletPreferences)
 		throws Exception {
 
-		/*if (portletPreferences == null) {
-			return portletPreferences;
-		}
-
-		portletPreferences.setValue("articleId", StringPool.BLANK);
-		portletPreferences.setValue("ddmTemplateKey", StringPool.BLANK);
-		portletPreferences.setValue("groupId", StringPool.BLANK);*/
+		portletPreferences.setValue("resourcePrimKey", StringPool.BLANK);
 
 		return portletPreferences;
 	}
