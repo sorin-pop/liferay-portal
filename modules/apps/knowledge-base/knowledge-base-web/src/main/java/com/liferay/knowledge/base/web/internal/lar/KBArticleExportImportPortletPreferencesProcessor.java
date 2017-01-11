@@ -117,6 +117,8 @@ public class KBArticleExportImportPortletPreferencesProcessor
 			sb.append(" (the root article)  ");
 			sb.append("while importing portlet KB Article.");
 
+			// the message should probably contain the portletId as well
+
 			throw new PortletDataException(sb.toString(), roe);
 		}
 
