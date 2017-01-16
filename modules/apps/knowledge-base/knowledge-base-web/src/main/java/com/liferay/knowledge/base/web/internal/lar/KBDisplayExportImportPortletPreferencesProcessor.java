@@ -175,8 +175,7 @@ public class KBDisplayExportImportPortletPreferencesProcessor
 				(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
 					KBArticle.class);
 		}
-
-		if (resourceClassName.equals(KBFolderConstants.getClassName())) {
+		else if (resourceClassName.equals(KBFolderConstants.getClassName())) {
 			resourcePrimKeys =
 				(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
 					KBFolder.class);
