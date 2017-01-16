@@ -228,8 +228,8 @@ public class KBDisplayExportImportPortletPreferencesProcessor
 				(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
 					KBArticle.class);
 
-			resourcePrimKey = MapUtil.getLong(kbArticleResourcePrimKeys,
-				resourcePrimKey, resourcePrimKey);
+			resourcePrimKey = MapUtil.getLong(
+				kbArticleResourcePrimKeys, resourcePrimKey, resourcePrimKey);
 
 			try {
 				portletPreferences.setValue(
