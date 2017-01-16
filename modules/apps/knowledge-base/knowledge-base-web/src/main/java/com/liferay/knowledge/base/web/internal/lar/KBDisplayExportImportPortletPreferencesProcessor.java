@@ -79,10 +79,11 @@ public class KBDisplayExportImportPortletPreferencesProcessor
 			portletPreferences.getValue(
 				"resourceClassNameId", StringPool.BLANK));
 
+		String resourceClassName = PortalUtil.getClassName(resourceClassNameId);
+
 		try {
 			portletPreferences.setValue(
-				"resourceClassNameId",
-				PortalUtil.getClassName(resourceClassNameId));
+				"resourceClassNameId", resourceClassName);
 		}
 		catch (ReadOnlyException roe) {
 			StringBundler sb = new StringBundler(9);
@@ -91,7 +92,7 @@ public class KBDisplayExportImportPortletPreferencesProcessor
 			sb.append("resourceClassNameId (from ");
 			sb.append(resourceClassNameId);
 			sb.append(" to ");
-			sb.append(PortalUtil.getClassName(resourceClassNameId));
+			sb.append(resourceClassName);
 			sb.append(") while exporting KB Display portlet. ");
 			sb.append("(portletId=");
 			sb.append(portletDataContext.getPortletId());
@@ -100,9 +101,7 @@ public class KBDisplayExportImportPortletPreferencesProcessor
 			throw new PortletDataException(sb.toString(), roe);
 		}
 
-		if (resourceClassNameId ==
-				PortalUtil.getClassNameId(KBArticleConstants.getClassName())) {
-
+		if (resourceClassName.equals(KBArticleConstants.getClassName())) {
 			if (resourcePrimKey !=
 					KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
 
@@ -120,9 +119,7 @@ public class KBDisplayExportImportPortletPreferencesProcessor
 			}
 		}
 
-		if (resourceClassNameId ==
-				PortalUtil.getClassNameId(KBFolderConstants.getClassName())) {
-
+		if (resourceClassName.equals(KBFolderConstants.getClassName())) {
 			if (resourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 				KBFolder rootFolder = _kbFolderLocalService.fetchKBFolder(
 					resourcePrimKey);
