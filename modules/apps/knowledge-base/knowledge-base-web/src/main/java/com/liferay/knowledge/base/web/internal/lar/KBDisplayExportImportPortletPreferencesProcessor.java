@@ -119,8 +119,7 @@ public class KBDisplayExportImportPortletPreferencesProcessor
 				}
 			}
 		}
-
-		if (resourceClassName.equals(KBFolderConstants.getClassName())) {
+		else if (resourceClassName.equals(KBFolderConstants.getClassName())) {
 			if (resourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 				KBFolder rootFolder = _kbFolderLocalService.fetchKBFolder(
 					resourcePrimKey);
