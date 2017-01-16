@@ -27,8 +27,6 @@ import com.liferay.knowledge.base.model.KBArticle;
 import com.liferay.knowledge.base.model.KBFolder;
 import com.liferay.knowledge.base.service.KBArticleLocalService;
 import com.liferay.knowledge.base.service.KBFolderLocalService;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MapUtil;
@@ -278,9 +276,6 @@ public class KBDisplayExportImportPortletPreferencesProcessor
 		_referencedStagedModelImporterCapability =
 			referencedStagedModelImporterCapability;
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		KBDisplayExportImportPortletPreferencesProcessor.class);
 
 	private KBArticleLocalService _kbArticleLocalService;
 	private KBFolderLocalService _kbFolderLocalService;
