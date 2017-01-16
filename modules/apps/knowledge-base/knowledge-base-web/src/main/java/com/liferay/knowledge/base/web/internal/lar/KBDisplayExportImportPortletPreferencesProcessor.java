@@ -97,8 +97,8 @@ public class KBDisplayExportImportPortletPreferencesProcessor
 				sb.append(resourceClassNameId);
 				sb.append(" to ");
 				sb.append(PortalUtil.getClassName(resourceClassNameId));
-				sb.append(") while exporting KB Display portlet. ");
-				sb.append(" (portletId=");
+				sb.append(") while exporting KB Display portlet.  ");
+				sb.append("(portletId=");
 				sb.append(portletDataContext.getPortletId());
 				sb.append(")");
 
@@ -201,7 +201,7 @@ public class KBDisplayExportImportPortletPreferencesProcessor
 					KBFolder.class);
 
 			resourcePrimKey = MapUtil.getLong(
-					kbFolderIds, resourcePrimKey, resourcePrimKey);
+				kbFolderIds, resourcePrimKey, resourcePrimKey);
 
 			try {
 				portletPreferences.setValue(
@@ -231,7 +231,7 @@ public class KBDisplayExportImportPortletPreferencesProcessor
 					KBArticle.class);
 
 			resourcePrimKey = MapUtil.getLong(kbArticleResourcePrimKeys,
-					resourcePrimKey, resourcePrimKey);
+				resourcePrimKey, resourcePrimKey);
 
 			try {
 				portletPreferences.setValue(
