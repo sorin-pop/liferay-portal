@@ -167,9 +167,7 @@ public class KBDisplayExportImportPortletPreferencesProcessor
 		long resourcePrimKey = GetterUtil.getLong(
 			portletPreferences.getValue("resourcePrimKey", StringPool.BLANK));
 
-		if (PortalUtil.getClassNameId(resourceClassName) ==
-				PortalUtil.getClassNameId(KBArticleConstants.getClassName())) {
-
+		if (resourceClassName.equals(KBArticleConstants.getClassName())) {
 			Map<Long, Long> kbArticleResourcePrimKeys =
 				(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
 					KBArticle.class);
@@ -197,9 +195,7 @@ public class KBDisplayExportImportPortletPreferencesProcessor
 			}
 		}
 
-		if (PortalUtil.getClassNameId(resourceClassName) ==
-				PortalUtil.getClassNameId(KBFolderConstants.getClassName())) {
-
+		if (resourceClassName.equals(KBFolderConstants.getClassName())) {
 			Map<Long, Long> kbFolderIds =
 				(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
 					KBFolder.class);
