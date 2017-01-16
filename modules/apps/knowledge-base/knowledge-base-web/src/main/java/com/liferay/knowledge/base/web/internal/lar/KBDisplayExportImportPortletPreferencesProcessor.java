@@ -79,29 +79,29 @@ public class KBDisplayExportImportPortletPreferencesProcessor
 			portletPreferences.getValue(
 				"resourceClassNameId", StringPool.BLANK));
 
+		try {
+			portletPreferences.setValue(
+				"resourceClassNameId",
+				PortalUtil.getClassName(resourceClassNameId));
+		}
+		catch (ReadOnlyException roe) {
+			StringBundler sb = new StringBundler(9);
+
+			sb.append("Unable to save converted portlet preference ");
+			sb.append("resourceClassNameId (from ");
+			sb.append(resourceClassNameId);
+			sb.append(" to ");
+			sb.append(PortalUtil.getClassName(resourceClassNameId));
+			sb.append(") while exporting KB Display portlet. ");
+			sb.append("(portletId=");
+			sb.append(portletDataContext.getPortletId());
+			sb.append(")");
+
+			throw new PortletDataException(sb.toString(), roe);
+		}
+
 		if (resourceClassNameId ==
 				PortalUtil.getClassNameId(KBArticleConstants.getClassName())) {
-
-			try {
-				portletPreferences.setValue(
-					"resourceClassNameId",
-					PortalUtil.getClassName(resourceClassNameId));
-			}
-			catch (ReadOnlyException roe) {
-				StringBundler sb = new StringBundler(9);
-
-				sb.append("Unable to save converted portlet preference ");
-				sb.append("resourceClassNameId (from ");
-				sb.append(resourceClassNameId);
-				sb.append(" to ");
-				sb.append(PortalUtil.getClassName(resourceClassNameId));
-				sb.append(") while exporting KB Display portlet. ");
-				sb.append("(portletId=");
-				sb.append(portletDataContext.getPortletId());
-				sb.append(")");
-
-				throw new PortletDataException(sb.toString(), roe);
-			}
 
 			if (resourcePrimKey !=
 					KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
@@ -122,27 +122,6 @@ public class KBDisplayExportImportPortletPreferencesProcessor
 
 		if (resourceClassNameId ==
 				PortalUtil.getClassNameId(KBFolderConstants.getClassName())) {
-
-			try {
-				portletPreferences.setValue(
-					"resourceClassNameId",
-					PortalUtil.getClassName(resourceClassNameId));
-			}
-			catch (ReadOnlyException roe) {
-				StringBundler sb = new StringBundler(9);
-
-				sb.append("Unable to save converted portlet preference ");
-				sb.append("resourceClassNameId (from ");
-				sb.append(resourceClassNameId);
-				sb.append(" to ");
-				sb.append(PortalUtil.getClassName(resourceClassNameId));
-				sb.append(") while exporting KB Display portlet.  ");
-				sb.append("(portletId=");
-				sb.append(portletDataContext.getPortletId());
-				sb.append(")");
-
-				throw new PortletDataException(sb.toString(), roe);
-			}
 
 			if (resourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 				KBFolder rootFolder = _kbFolderLocalService.fetchKBFolder(
