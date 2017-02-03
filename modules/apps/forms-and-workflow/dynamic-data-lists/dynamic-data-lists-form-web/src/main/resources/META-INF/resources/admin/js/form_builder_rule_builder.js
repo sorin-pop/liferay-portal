@@ -139,7 +139,7 @@ AUI.add(
 
 						for (var i = 0; i < pagesQuantity; i++) {
 							pages[i] = {
-								label: pagesTitles[i] ? pagesTitles[i] : (i + 1).toString(),
+								label: pagesTitles[i] ? (i + 1).toString() + ' ' + pagesTitles[i] : (i + 1).toString(),
 								value: i.toString()
 							};
 						}
@@ -259,14 +259,11 @@ AUI.add(
 
 						var rulesDescription = [];
 
-						var ruleDescription = {};
-
 						for (var i = 0; i < rules.length; i++) {
-							ruleDescription.conditions = rules[i].conditions;
-
-							ruleDescription.actions = instance._getActionsDescription(rules[i].actions);
-
-							rulesDescription.push(ruleDescription);
+							rulesDescription.push({
+								actions: instance._getActionsDescription(rules[i].actions),
+								conditions: rules[i].conditions
+							});
 						}
 
 						return rulesDescription;

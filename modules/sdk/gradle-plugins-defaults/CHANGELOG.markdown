@@ -932,11 +932,61 @@ compilation.
 - [LPS-70170]: Use the latest snapshot of the `com.liferay.util.taglib`
 dependency for JSP compilation.
 
-## 2.4.16 - 2017-01-19
+## 2.4.16 - 2017-01-20
 
 ### Changed
 - [LPS-69501]: Use the published portal tools by default instead of the ones
 deployed locally in the `tools/sdk/dependencies` directories.
+
+## 2.4.17 - 2017-01-26
+
+### Added
+- [LPS-70282]: Automatically apply the `application` plugin if the `bnd.bnd`
+file contains a `Main-Class` header.
+
+### Changed
+- [LPS-70282]: Update the [Liferay Gradle Plugins] dependency to version 3.1.2.
+- [LPS-70286]: Change the `appJavadoc` task's generated module headings (e.g.,
+*Liferay Journal API - com.liferay:com.liferay.journal:2.0.0*).
+
+## 2.4.18 - 2017-01-27
+
+### Changed
+- [LPS-69926]: Make dependencies in the `compileInclude` configuration
+non-transitive by default.
+- [LPS-69926]: Make the `testCompile` configuration extend from the
+`compileInclude` configuration.
+
+## 2.4.19 - 2017-01-29
+
+### Changed
+- [LPS-70335]: Skip replacements of the `updateFileVersions` task in read-only
+sub-repositories.
+- [LPS-70336]: Update the [Liferay Gradle Plugins] dependency to version 3.1.3.
+
+## 2.4.20 - 2017-01-30
+
+### Fixed
+- [LPS-70335]: Fix location of version override files.
+
+## 2.4.21 - 2017-01-30
+
+### Changed
+- [LPS-66853]: Update the [Liferay Gradle Plugins] dependency to version 3.1.4.
+
+## 2.4.22 - 2017-01-31
+
+### Changed
+- [LPS-69606]: Generate WSDD files in a temporary directory.
+- [LPS-70379]: Update the [Liferay Gradle Plugins] dependency to version 3.1.5.
+- [LPS-70379]: Update the [Liferay Gradle Plugins Baseline] dependency to
+version 1.1.2.
+
+## 2.4.23 - 2017-02-01
+
+### Changed
+- [LPS-69926]: Move the `compileInclude` dependencies at the beginning of the
+test compile and runtime classpaths.
 
 [Liferay CDN]: https://cdn.lfrs.sl/repository.liferay.com/nexus/content/groups/public
 [Liferay Gradle Plugins]: https://github.com/liferay/liferay-portal/tree/master/modules/sdk/gradle-plugins
@@ -1022,11 +1072,17 @@ deployed locally in the `tools/sdk/dependencies` directories.
 [LPS-69847]: https://issues.liferay.com/browse/LPS-69847
 [LPS-69899]: https://issues.liferay.com/browse/LPS-69899
 [LPS-69920]: https://issues.liferay.com/browse/LPS-69920
+[LPS-69926]: https://issues.liferay.com/browse/LPS-69926
 [LPS-70036]: https://issues.liferay.com/browse/LPS-70036
 [LPS-70084]: https://issues.liferay.com/browse/LPS-70084
 [LPS-70092]: https://issues.liferay.com/browse/LPS-70092
 [LPS-70146]: https://issues.liferay.com/browse/LPS-70146
 [LPS-70170]: https://issues.liferay.com/browse/LPS-70170
+[LPS-70282]: https://issues.liferay.com/browse/LPS-70282
+[LPS-70286]: https://issues.liferay.com/browse/LPS-70286
+[LPS-70335]: https://issues.liferay.com/browse/LPS-70335
+[LPS-70336]: https://issues.liferay.com/browse/LPS-70336
+[LPS-70379]: https://issues.liferay.com/browse/LPS-70379
 [LRDOCS-2594]: https://issues.liferay.com/browse/LRDOCS-2594
 [LRDOCS-2841]: https://issues.liferay.com/browse/LRDOCS-2841
 [LRDOCS-2981]: https://issues.liferay.com/browse/LRDOCS-2981
